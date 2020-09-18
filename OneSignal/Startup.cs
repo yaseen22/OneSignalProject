@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using OneSignal.Models;
 using Owin;
+using System.Configuration;
 
 [assembly: OwinStartupAttribute(typeof(OneSignal.Startup))]
 namespace OneSignal
@@ -33,9 +34,9 @@ namespace OneSignal
 
                 //Create Admin super user             
                 var user = new ApplicationUser();
-                user.UserName = "Yaseen";
-                user.Email = "mohamed.yaseen@gmail.com";
-                string userPWD = "Yaseen_30";
+                user.UserName = ConfigurationManager.AppSettings["DefaultAdminUserName"];
+                user.Email = ConfigurationManager.AppSettings["DefaultAdminUserEmail"];
+                string userPWD = ConfigurationManager.AppSettings["DefaultAdminUserPassword"];
                 var chkUser = UserManager.Create(user, userPWD);
 
                 //Add default User to Admin role    
