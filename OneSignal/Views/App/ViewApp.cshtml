@@ -1,0 +1,33 @@
+﻿@model OneSignal.Models.App
+
+@{
+    ViewBag.Title = "ViewApp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>App Details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Model.name
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.id)
+        </dt>
+
+        <dd>
+            @Model.id
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back", "ViewAllApps")
+</p>

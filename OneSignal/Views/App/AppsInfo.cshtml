@@ -1,0 +1,48 @@
+﻿@model OneSignal.Models.AppViewModel
+
+<h2>Apps Info</h2>
+
+@{
+    var isAdmin = false;
+    if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+            isAdmin = true;
+        }
+    }
+}
+
+@if(isAdmin){ 
+<p>
+    @Html.ActionLink("Create New App", "CreateApp")
+</p>
+}
+
+
+<table class="table">
+    <tr>
+        <th>APP Name</th>
+        <th>App Id</th>
+    </tr>
+
+    @foreach (var item in Model.Apps)
+    {
+        <tr>
+            <td>
+                @item.name
+            </td>
+            <td>
+                @item.id
+            </td>
+            <td>
+                @if (isAdmin)
+                {
+                    @Html.ActionLink("Update", "UpdateApp", item) <text>|</text>
+                }
+                @Html.ActionLink("View", "ViewApp", item)
+            </td>
+        </tr>
+    }
+
+</table>
